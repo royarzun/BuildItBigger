@@ -9,12 +9,12 @@ package info.royarzun.gcejokes.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.udacity.gradle.jokes.JokeGenerator;
 
-import javax.inject.Named;
 
 /** An endpoint class we are exposing */
 @Api(
-  name = "myApi",
+  name = "theJokesAPI",
   version = "v1",
   namespace = @ApiNamespace(
     ownerDomain = "backend.gcejokes.royarzun.info",
@@ -22,13 +22,14 @@ import javax.inject.Named;
     packagePath=""
   )
 )
-public class MyEndpoint {
+public class JokeEndpoint {
 
-    /** A simple endpoint method that takes a name and says Hi back */
-    @ApiMethod(name = "sayHi")
-    public MyBean sayHi(@Named("name") String name) {
-        MyBean response = new MyBean();
-        response.setData("Hi, " + name);
+    private JokeGenerator jokeGenerator = new JokeGenerator();
+
+    @ApiMethod(name = "getMeSomeJokes")
+    public Joke getMeSomeJokes() {
+        Joke response = new Joke();
+        response.setData(jokeGenerator.getJoke());
 
         return response;
     }
