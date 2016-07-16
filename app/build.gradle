@@ -25,6 +25,7 @@ dependencies {
     // Added for AdMob
     compile 'com.google.firebase:firebase-ads:9.0.0'
     compile project(':lib')
+    compile project(':JokesAndroid')
 }
 
 apply plugin: 'com.google.gms.google-services'
