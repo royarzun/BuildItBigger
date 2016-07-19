@@ -10,10 +10,10 @@
     {
       "client_info": {
         "mobilesdk_app_id": "1:999999999999:android:0000000000000000",
-        "client_id": "android:com.udacity.gradle.builditbigger",
+        "client_id": "android:com.udacity.gradle.builditbigger.paid",
         "client_type": 1,
         "android_client_info": {
-          "package_name": "com.udacity.gradle.builditbigger",
+          "package_name": "com.udacity.gradle.builditbigger.paid",
           "certificate_hash": []
         }
       },
