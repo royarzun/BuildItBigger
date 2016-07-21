@@ -1,10 +1,15 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.util.concurrent.ExecutionException;
+
+import info.royarzun.jokesandroidlib.JokeActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,8 +43,18 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view){
-        new JokeAsyncTask(this).execute(this);
+    public void tellJoke(View view) {
+        String joke = null;
+        try {
+            joke = new JokeAsyncTask().execute().get();
+            Intent intent = new Intent(this, JokeActivity.class);
+            intent.putExtra(JokeActivity.EXTRA_JOKE, joke);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
-
 }
