@@ -1,6 +1,7 @@
 
 package com.udacity.gradle.builditbigger;
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Assert;
@@ -11,13 +12,12 @@ import java.util.concurrent.ExecutionException;
 
 
 @RunWith(AndroidJUnit4.class)
-public class AsyncTaskTest  {
-
+public class AsyncTaskTest {
     @Test
     public void testAsyncTaskWithNull(){
         String testString = null;
         try {
-            testString = new JokeAsyncTask().execute().get();
+            testString = new JokeAsyncTask(InstrumentationRegistry.getTargetContext()).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
